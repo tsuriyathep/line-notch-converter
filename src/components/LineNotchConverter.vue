@@ -22,6 +22,8 @@ let reelText = ref(`1	1	1	1	1
 0	0	1	0	0
 3	3	2	3	3`);
 let reelResult = ref('');
+let reelRows = ref(0);
+let reelCols = ref(0);
 
 function process() {
   let result = '';
@@ -41,6 +43,10 @@ function process() {
       break;
     }
   }
+
+  // Save reel size
+  this.reelRows.value = rows;
+  this.reelCols.value = cols;
 
   // Grab data column by column
   for (let j = 0; j < cols; j++) {
@@ -68,7 +74,7 @@ process();
 <template>
   <b>INPUT (from Excel tab separated):</b>
   <textarea v-model="reelText" style="width: 100%" rows="20" />
-  <b>OUTPUT (JSON array):</b>
+  <b>OUTPUT ({{ reelCols }}x{{ reelRows }}):</b>
   <textarea v-model="reelResult" style="width: 100%" rows="15" />
 </template>
 
